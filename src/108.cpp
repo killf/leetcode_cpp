@@ -12,14 +12,16 @@ struct TreeNode {
 
 class Solution {
 public:
-
-  TreeNode *visit(TreeNode *root, vector<int> &nums, int left, int right) {
+  TreeNode *visit(vector<int> &nums, int left, int right) {
+    if (left > right)return nullptr;
     int i = (left + right) / 2;
     auto node = new TreeNode(nums[i]);
-
+    node->left = visit(nums, left, i - 1);
+    node->right = visit(nums, i + 1, right);
+    return node;
   }
 
   TreeNode *sortedArrayToBST(vector<int> &nums) {
-    return visit(nullptr, nums, 0, nums.size() - 1);
+    return visit(nums, 0, nums.size() - 1);
   }
 };
