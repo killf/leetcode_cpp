@@ -14,6 +14,8 @@ class Solution {
 public:
   vector<vector<int>> levelOrderBottom(TreeNode *root) {
     vector<vector<int>> result;
+    if (!root)return result;
+
     vector<TreeNode *> next = {root}, next_pre;
     while (!next.empty()) {
       result.emplace_back();
