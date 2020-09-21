@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(leetcode)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 add_executable(038 src/038.cpp)
 add_executable(043 src/043.cpp)
@@ -10,5 +10,6 @@ add_executable(058 src/058.cpp)
 add_executable(061 src/061.cpp)
 add_executable(064 src/064/02.cpp)
 add_executable(066 src/066.cpp)
+add_executable(067 src/067.cpp)
 add_executable(124 src/124.cpp)
 add_executable(474 src/474.cpp)
