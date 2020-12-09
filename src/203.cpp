@@ -17,20 +17,16 @@ struct ListNode {
 class Solution {
 public:
     ListNode *removeElements(ListNode *head, int val) {
-        ListNode *p = head, *prev = nullptr;
-        while (p) {
-            if (p->val == val) {
-                if (prev) {
-                    prev->next = p->next;
-                    p = p->next;
-                } else {
-                    head = p = p->next;
-                }
-            } else {
-                prev = p;
-                p = p->next;
-            }
+        ListNode node(-1);
+        node.next = head;
+
+        ListNode *p = &node;
+        while (p->next) {
+            if (p->next->val == val) {
+                p->next = p->next->next;
+            } else p = p->next;
         }
-        return head;
+
+        return node.next;
     }
 };
