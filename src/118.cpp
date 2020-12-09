@@ -20,6 +20,7 @@ public:
       for (int j = 0; j < i - 1; j++) {
         v.push_back(last[j] + last[j + 1]);
       }
+      v.push_back(1);
       result.push_back(v);
     }
 
