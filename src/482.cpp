@@ -17,6 +17,12 @@ using namespace std;
 class Solution {
 public:
     string licenseKeyFormatting(string S, int K) {
+        stringstream ss;
+        int k = K;
+        for (int i = S.size() - 1; i >= 0; i--) {
+            char c = S[i];
+            if (c == '-')continue;
 
+        }
     }
 };
