@@ -22,6 +22,7 @@ public:
       data.resize(c);
       for (int j = 0; j < c; j++, loc++) {
          auto[ii, jj] = div(loc, col);
+        data[j] = nums[ii][jj];
       }
     }
     return result;
