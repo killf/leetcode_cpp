@@ -3,6 +3,8 @@ project(leetcode)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include_directories(common)
+
 add_executable(038 src/038.cpp)
 add_executable(043 src/043.cpp)
 add_executable(053 src/053.cpp)
@@ -130,3 +132,5 @@ add_executable(617 src/617.cpp)
 add_executable(628 src/628.cpp)
 add_executable(637 src/637.cpp)
 add_executable(643 src/643.cpp)
+add_executable(645 src/645.cpp)
+add_executable(653 src/653.cpp)
