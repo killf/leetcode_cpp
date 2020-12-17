@@ -13,49 +13,15 @@
 
 using namespace std;
 
-class BitSet {
-public:
-  explicit BitSet(size_t max_size) : max_size(max_size) {
-    data = new char[max_size / 8 + 1]{};
-  }
-
-  void set(size_t pos) {
-    auto[a, b]=div(pos, 8);
-    data[a] |= 1 << b;
-  }
-
-  bool get(size_t pos) {
-    auto[a, b]=div(pos, 8);
-    return data[a] & (1 << b);
-  }
-
-private:
-  char *data;
-  size_t max_size;
-};
-
 inline void counter_count(char *counter, string &s) {
   for (int i = 0; i < s.size(); i++) {
-    int c = s[i] - 'a';
-    if (i & 1) counter[c + 26]++;
-    else counter[c]++;
+    counter[s[i] - 'a' + 26 * (i % 2)]++;
   }
 }
 
-inline bool counter_compare(char *counter, string &s) {
-  char data[52];
-
-  int *p1 = (int *) data, *p2 = (int *) counter;
-  for (int i = 0; i < 13; i++)*p1++ = *p2++;
-
-  for (int i = 0; i < s.size(); i++) {
-    int c = s[i] - 'a';
-    char v;
-    if (i & 1) v = --data[c + 26];
-    else v = --data[c];
-    if (v < 0)return false;
-  }
-
+inline bool counter_compare(char *counter1, char *counter2) {
+  int *p1 = (int *) counter1, *p2 = (int *) counter2;
+  for (int i = 0; i < 13; i++)if (*p1++ != *p2++)return false;
   return true;
 }
 
@@ -64,36 +30,50 @@ inline void counter_reset(char *counter) {
   for (int i = 0; i < 13; i++)*p++ = 0;
 }
 
+class HashSet {
+private:
+  struct Node {
+    char data[52];
+    Node *next;
+  };
+
+public:
+  void insert(string &s) {
+    Node *node = new Node{};
+    counter_reset(node->data);
+    counter_count(node->data, s);
+
+    auto loc = hash(node->data) % 1024;
+    for (auto *p = data[loc]; p; p = p->next) {
+      if (counter_compare(node->data, p->data))return;
+    }
+
+    node->next = data[loc];
+    data[loc] = node;
+    size++;
+  }
+
+  size_t hash(const char *counter) {
+    size_t loc = 0;
+    for (int i = 0; i < 52; i++) {
+      loc += counter[i] * (i + 1);
+    }
+    return loc;
+  }
+
+  int size = 0;
+
+private:
+  Node *data[1024] = {};
+};
+
 
 class Solution {
 public:
   int numSpecialEquivGroups(vector<string> &A) {
-    BitSet flags(A.size());
-
-    int result = 0;
-    char counter[52] = {};
-    for (int i = 0; i < A.size(); i++) {
-      if (flags.get(i))continue;
-
-      counter_reset(counter);
-      counter_count(counter, A[i]);
-      flags.set(i);
-      result++;
-
-      for (int j = i + 1; j < A.size(); j++) {
-        if (counter_compare(counter, A[j])) {
-          flags.set(j);
-          continue;
-        }
-      }
-    }
-
-    return result;
+    HashSet set;
+    for (auto &s:A)set.insert(s);
+    return set.size;
   }
 };
 
-int main() {
-  cout << true << false;
-
-  return 0;
-}
