@@ -17,7 +17,19 @@ using namespace std;
 
 class Solution {
 public:
-  int minDeletionSize(vector<string>& A) {
+  int minDeletionSize(vector<string> &A) {
+    if (A.size() <= 1)return 0;
 
+    int row = A.size(), col = A[0].size(), count = 0;
+    for (int c = 0; c < col; c++) {
+      for (int r = 0; r < row - 1; r++) {
+        if (A[r][c] > A[r + 1][c]) {
+          count++;
+          break;
+        }
+      }
+    }
+
+    return count;
   }
 };
