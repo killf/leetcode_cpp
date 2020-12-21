@@ -33,6 +33,7 @@ public:
       minimum_moves++;
       maximum_moves += c - b - 1;
     }
+    if (a + 2 == b || b + 2 == c)minimum_moves = 1;
     return {minimum_moves, maximum_moves};
   }
 };
