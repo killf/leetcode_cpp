@@ -23,9 +23,20 @@
 * 排序算法
   * 插入排序
 * C++中常用数据结构和算法
-  * map->红黑树，具有自动排序功能
+  * vector
+  * set->红黑树，内部有序，此外还有multiset、unordered_set
+  * map->红黑树，具有自动排序功能    
+  * string
+  * queue
+  * deque
+  * priority_queue->堆
+  * stack
+  * pair
   * 排序:sort
   * 翻转:reverse
+  * 填充:fill
+  * 交换:swap
+  * 范围查找:lower_bound,upper_bound
 * 哈希算法
   * 简单hash:用一个数组表示的hash
   * 普通hash:用n个链表表示，头指针存放到数组中
@@ -50,3 +61,5 @@
   * x % 2 == 0
   * x / 2 * 2 == x
   * x & 1 == 0
+* 优先级队列
+* 红黑树
