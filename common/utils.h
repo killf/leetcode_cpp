@@ -36,9 +36,9 @@ vector<string> split(const string &s, char c) {
   return result;
 }
 
-template<typename T>
-T reduce_sum(const vector<T> &list) {
-  T sum = T();
+template<typename T1, typename T2=typename T1::value_type>
+T2 reduce_sum(const T1 &list) {
+  T2 sum = T2();
   for (const auto &iter:list)sum += iter;
   return sum;
 }
