@@ -24,11 +24,11 @@ public:
       }
     }
     ss << k << c;
-    return count(ss.str(), n - 1);
+    return counts(ss.str(), n - 1);
   }
 
   string countAndSay(int n) {
-    return count("1", n - 1);
+    return counts("1", n - 1);
   }
 };
 

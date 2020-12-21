@@ -19,7 +19,7 @@ public:
 
         int zeros, ones;
         for (const auto &s:strs) {
-            count(s, zeros, ones);
+            counts(s, zeros, ones);
             for (int r = m; r >= zeros; r--) {
                 for (int c = n; c >= ones; c--) {
                     result[r][c] = max(1 + result[r - zeros][c - ones], result[r][c]);

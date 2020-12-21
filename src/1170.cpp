@@ -6,8 +6,8 @@ public:
   vector<int> numSmallerByFrequency(vector<string> &queries, vector<string> &words) {
     vector<int> queries_idx(queries.size()), words_idx(words.size()), result(queries.size());
 
-    for (int i = 0; i < queries.size(); i++)queries_idx[i] = count(queries[i]);
-    for (int i = 0; i < words.size(); i++)words_idx[i] = count(words[i]);
+    for (int i = 0; i < queries.size(); i++)queries_idx[i] = counts(queries[i]);
+    for (int i = 0; i < words.size(); i++)words_idx[i] = counts(words[i]);
 
     int nums[11] = {}, sums[11] = {};
     for (auto i:words_idx)nums[i]++;
