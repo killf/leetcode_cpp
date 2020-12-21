@@ -9,13 +9,13 @@ public:
     for (int i = 0; i < queries.size(); i++)queries_idx[i] = count(queries[i]);
     for (int i = 0; i < words.size(); i++)words_idx[i] = count(words[i]);
 
-    sort(words_idx.begin(), words_idx.end());
-
-    for (int i = 0; i < queries.size(); i++) {
-      for (int j = words.size() - 1; j >= 0; j--) {
-        if (queries_idx[i] < words_idx[j])result[i]++; else break;
-      }
+    int nums[11] = {}, sums[11] = {};
+    for (auto i:words_idx)nums[i]++;
+    for (int i = 0; i < 11; i++) {
+      for (int j = i + 1; j < 11; j++)sums[i] += nums[j];
     }
+
+    for (int i = 0; i < queries.size(); i++) result[i] = sums[queries_idx[i]];
     return result;
   }
 
