@@ -33,6 +33,6 @@ public:
       if (a > 0)queue.push(a);
     }
 
-    return queue.top();
+    return queue.empty() ? 0 : queue.top();
   }
 };
