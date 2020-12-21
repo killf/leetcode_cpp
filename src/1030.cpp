@@ -33,10 +33,10 @@ public:
       result.push_back({r, c});
       flags.set(r * C + c, true);
 
-      if (r > 0 && !flags.test((r - 1) * C + c))queue.emplace(r - 1, c);
-      if (c > 0 && !flags.test(r * C + c - 1))queue.emplace(r, c - 1);
-      if (r < R - 1 && !flags.test((r + 1) * C + c))queue.emplace(r + 1, c);
-      if (c < C - 1 && !flags.test(r * C + c + 1))queue.emplace(r, c + 1);
+      if (r > 0)queue.emplace(r - 1, c);
+      if (c > 0)queue.emplace(r, c - 1);
+      if (r < R - 1)queue.emplace(r + 1, c);
+      if (c < C - 1)queue.emplace(r, c + 1);
     }
 
     return result;
