@@ -36,4 +36,11 @@ vector<string> split(const string &s, char c) {
   return result;
 }
 
+template<typename T>
+T reduce_sum(const vector<T> &list) {
+  T sum = T();
+  for (const auto &iter:list)sum += iter;
+  return sum;
+}
+
 #endif //LEETCODE_UTILS_H
