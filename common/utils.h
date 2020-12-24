@@ -43,4 +43,24 @@ T2 reduce_sum(const T1 &list) {
   return sum;
 }
 
+template<typename T>
+class Mat {
+public:
+  Mat(int row, int col, const T &value = T()) : row_(row), col_(col), data_(new T[row * col]) {
+    for (int i = 0; i < row * col; i++)data_[i] = value;
+  }
+
+  T &operator()(int r, int c) {
+    return data_[r * col_ + c];
+  }
+
+  const T &operator()(int r, int c) const {
+    return data_[r * col_ + c];
+  }
+
+private:
+  T *data_;
+  int row_, col_;
+};
+
 #endif //LEETCODE_UTILS_H
